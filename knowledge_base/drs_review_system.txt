@@ -1,0 +1,9 @@
+The Decision Review System (DRS) allows teams to challenge an on-field umpire's
+decision using technology such as ball-tracking, ultra-edge (sound-based edge
+detection), and replays. Each team is typically given a limited number of
+unsuccessful reviews per innings, usually two in international cricket. If a
+review is upheld (the original decision is overturned), the team does not lose
+that review. For LBW decisions specifically, the ball-tracking prediction must
+show the ball hitting the stumps within the marked zone for the decision to be
+overturned in the batter's favor when reviewing an out decision, or in the
+bowler's favor when reviewing a not-out decision.

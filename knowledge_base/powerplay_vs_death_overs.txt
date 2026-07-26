@@ -1,0 +1,8 @@
+Cricket innings in T20 and ODI matches are broadly split into phases with
+different strategic priorities. The powerplay (the first 6 overs in T20, first
+10 in ODIs) favors aggressive batting due to fielding restrictions. The middle
+overs typically see more measured batting, focused on rotating strike and
+building a platform, since fielding restrictions ease. The death overs (the
+final few overs of an innings, from around over 15 onward in T20 cricket) often
+see the highest scoring rates as batters look to maximize runs before the
+innings ends, and bowlers focus on yorkers and variations to limit boundaries.

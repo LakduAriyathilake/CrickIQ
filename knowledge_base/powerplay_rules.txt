@@ -1,0 +1,7 @@
+In T20 cricket, the powerplay refers to the first 6 overs of each innings, during
+which fielding restrictions apply. Only two fielders are allowed outside the 30-yard
+circle during this period, which forces the fielding team to keep more players
+close to the batter. This typically makes it easier for the batting side to score
+boundaries early in the innings. After the powerplay ends, up to five fielders can
+be placed outside the circle, making it harder to find gaps and generally slowing
+the run rate until the death overs.

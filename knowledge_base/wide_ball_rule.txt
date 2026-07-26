@@ -1,0 +1,6 @@
+A wide is called when the ball passes too far from the batter, outside the
+reach of a normal cricket shot, based on marked guidelines on the pitch. A wide
+results in one extra run awarded to the batting team, and the delivery must be
+bowled again since it does not count as one of the over's six legal balls. In
+limited-overs cricket, umpires tend to apply wide restrictions more strictly than
+in Test cricket, especially regarding deliveries down the leg side.

@@ -1,0 +1,7 @@
+A super over is used to break a tie in a T20 match that finishes level after both
+teams have batted their full innings. Each team bats one additional over with two
+batters and one bowler, and whichever team scores more runs in that over wins the
+match. If the super over itself ends in a tie, another super over is played,
+continuing until a winner is decided. A team can only use bowlers who bowled fewer
+than four overs in the main match to bowl the super over, and typically cannot use
+a batter who was already dismissed in the main innings.

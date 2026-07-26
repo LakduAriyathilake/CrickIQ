@@ -1,0 +1,8 @@
+At the start of a cricket match, the two captains take part in a coin toss to
+decide which team bats or fields first. The winning captain chooses based on
+factors like pitch conditions, weather, and format. In conditions expected to
+assist bowlers early on (such as overcast weather or a fresh, seam-friendly
+pitch), teams often choose to bowl first. In matches where dew is expected later
+in the evening (common in day-night matches in the subcontinent), teams often
+prefer to bowl first to avoid batting on a wet, harder-to-grip ball later in
+their innings.

@@ -1,0 +1,9 @@
+The Duckworth-Lewis-Stern (DLS) method is used to calculate a fair target score
+when a cricket match is interrupted, delayed, or rained out and overs have to be
+reduced. If rain stops play and the match is shortened, DLS recalculates a revised
+target for the team batting second, rather than simply using the original run rate.
+It works by tracking two resources a team has at any point in an innings: the
+number of overs remaining and the number of wickets in hand. This means a rain
+delay does not always halve the target if half the overs are lost, since wickets
+in hand matter too. DLS replaced older, simpler methods because it accounts for
+both overs and wickets together when a match is washed out or cut short.

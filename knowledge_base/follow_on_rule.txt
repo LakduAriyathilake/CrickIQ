@@ -1,0 +1,7 @@
+The follow-on is a rule specific to Test and first-class multi-day cricket. If
+the team batting second is dismissed for significantly fewer runs than the team
+that batted first (typically at least 200 runs behind in a Test match), the team
+that batted first has the option to enforce the follow-on, making the team that
+batted second bat again immediately instead of the side that led taking their
+turn to bat. This rule does not apply in limited-overs formats like ODIs or T20s,
+which only have one innings per side.

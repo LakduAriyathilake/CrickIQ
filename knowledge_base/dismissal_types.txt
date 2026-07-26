@@ -1,0 +1,8 @@
+A batter can be dismissed in several ways in cricket. Bowled means the ball hits
+the stumps directly from the bowler's delivery. Caught means a fielder catches
+the ball before it touches the ground after the batter hits it. LBW (leg before
+wicket) means the ball would have hit the stumps but was blocked by the batter's
+leg or body instead of the bat. Run out happens when a fielder breaks the stumps
+with the ball while the batter is outside their crease attempting a run. Stumped
+is similar but specifically when the wicketkeeper breaks the stumps while the
+batter is out of their crease, usually after missing a shot.
