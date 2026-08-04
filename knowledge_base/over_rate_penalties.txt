@@ -1,0 +1,6 @@
+Teams are required to bowl their allotted overs within a set time limit during
+a match. If a fielding team falls behind this required over rate, they can face
+penalties, which vary by competition and format but commonly include fines for
+players and team management. In some limited-overs formats, a slow over rate can
+also result in fielding restrictions being imposed on the fielding team for the
+remaining overs of the innings, similar to powerplay restrictions.

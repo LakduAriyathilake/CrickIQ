@@ -1,168 +1,349 @@
-# 🏏 CrickIQ — Hybrid RAG + Text-to-SQL Cricket Analytics Assistant
+# 🏏 CrickIQ – Hybrid RAG + Text-to-SQL Cricket Analytics Assistant
 
-CrickIQ is a hybrid agentic system that answers cricket questions in natural language,
-covering both the **ICC Men's T20 World Cup** and **ICC Women's T20 World Cup** in a
-single unified dataset. A semantic router decides whether a question needs live
-statistical analysis or conceptual/rules knowledge, then delegates to the
-appropriate engine:
+CrickIQ is an AI-powered cricket analytics assistant that enables users to ask cricket-related questions in natural language and receive intelligent, context-aware answers.
 
-- **Text-to-SQL Agent** — converts natural language into PostgreSQL queries, run
-  against a real ball-by-ball database (398 matches, ~92,000 deliveries).
-- **RAG Agent** — retrieves from a ChromaDB knowledge base of cricket rules and
-  concepts, then generates a grounded answer using only the retrieved context.
-- **Semantic Router** — a lightweight LLM classification step that picks the right
-  engine per question, so the system handles "who has the best economy rate in
-  death overs?" and "what is the DLS method?" equally well from the same chat box.
+The system combines **Retrieval-Augmented Generation (RAG)** with **Text-to-SQL** to answer both statistical and conceptual cricket questions through a single conversational interface. A semantic routing layer automatically determines the user's intent and forwards the query to the most appropriate AI agent.
 
 ---
 
-## Demo
+## ✨ Features
 
-Ask things like:
-
-- `Best economy rate in death overs`
-- `Best strike rate in powerplay for women's matches`
-- `What is the DLS method?`
-- `How does a super over work?`
-
-Each question is classified, routed, and answered live — stats questions return
-real query results from the database; rules questions return explanations grounded
-in the knowledge base (not the model's general training knowledge).
+- 🤖 Natural language cricket Q&A
+- 📊 Live statistical analysis using SQL
+- 📚 Cricket rules and concept explanations using RAG
+- 🧠 Semantic routing between AI agents
+- 🏏 Unified Men's and Women's ICC T20 World Cup dataset
+- 📈 Interactive Streamlit chat interface
+- 🗃 PostgreSQL database hosted on Supabase
+- 🔍 ChromaDB vector search for knowledge retrieval
 
 ---
 
-## Architecture
+# Demo Questions
 
-User question
-                         │
-                Streamlit Chat UI (app.py)
-                         │
-                Semantic Router (router.py)
-                (Groq / Llama-3.3-70B classifier)
-                         │
-          ┌──────────────┴──────────────┐
-          │                             │
-    STATS question                RULES question
-          │                             │
-  Text-to-SQL Agent               RAG Agent
-  (sql_agent.py)                  (rag_agent.py)
-          │                             │
-  Groq generates SQL           ChromaDB retrieves
-  from schema + domain         top-3 relevant docs
-  conventions                          │
-          │                    Groq generates answer
-  Query runs against           grounded in retrieved
-  PostgreSQL (Supabase)        context only
-          │                             │
-          └──────────────┬──────────────┘
-                         │
-                  Formatted answer
-                 back to chat UI
+### Statistical Questions
 
+- Best economy rate in death overs
+- Highest strike rate during the powerplay
+- Smriti Mandhana's strike rate
+- Head-to-head between India and Pakistan
+- Which team scored the highest total?
+
+### Knowledge Questions
+
+- What is the DLS method?
+- Explain Powerplay rules.
+- How does a Super Over work?
+- What is the Free Hit rule?
+- What happens after a tied knockout match?
 
 ---
 
-## Tech Stack
+# System Architecture
 
-| Layer | Tools |
-|---|---|
-| Data engineering | Python, pandas, Google Colab |
-| Database | PostgreSQL (hosted on Supabase) |
-| Vector store | ChromaDB (persistent, local) |
-| Embeddings | sentence-transformers (`all-MiniLM-L6-v2`) |
-| LLM | Groq API — Llama-3.3-70B-Versatile |
-| Orchestration | SQLAlchemy, python-dotenv |
+```
+                        User Question
+                              │
+                              ▼
+                   Streamlit Chat Interface
+                              │
+                              ▼
+                     Semantic Router (LLM)
+                              │
+          ┌───────────────────┴───────────────────┐
+          │                                       │
+          ▼                                       ▼
+     Text-to-SQL Agent                     RAG Agent
+          │                                       │
+          ▼                                       ▼
+ PostgreSQL Database                    ChromaDB Knowledge Base
+          │                                       │
+          └───────────────────┬───────────────────┘
+                              ▼
+                      Formatted Response
+```
+
+---
+
+# How It Works
+
+## 1. User asks a question
+
+Example:
+
+```
+Who has the best economy rate in death overs?
+```
+
+or
+
+```
+What is the DLS method?
+```
+
+---
+
+## 2. Semantic Router
+
+The router classifies every question into one of two categories:
+
+- Statistical Query
+- Knowledge Query
+
+---
+
+## 3. Text-to-SQL Agent
+
+For statistical questions:
+
+- Understands user intent
+- Generates PostgreSQL query
+- Executes query against Supabase
+- Returns formatted analytics
+
+Example:
+
+```
+Best batting average
+Highest strike rate
+Powerplay statistics
+Head-to-head records
+```
+
+---
+
+## 4. RAG Agent
+
+For conceptual questions:
+
+- Retrieves relevant documents from ChromaDB
+- Uses retrieved context only
+- Generates grounded response
+- Prevents hallucinations
+
+Example:
+
+```
+DLS Method
+
+Powerplay
+
+No Ball Rules
+
+Super Over
+```
+
+---
+
+# Technology Stack
+
+| Layer | Technology |
+|--------|------------|
+| Programming | Python |
 | UI | Streamlit |
+| Database | PostgreSQL (Supabase) |
+| Vector Database | ChromaDB |
+| Embeddings | all-MiniLM-L6-v2 |
+| LLM | Groq (Llama-3.3-70B-Versatile) |
+| ORM | SQLAlchemy |
+| Data Processing | Pandas |
+| Environment | python-dotenv |
 
 ---
 
-## Data Pipeline
+# Dataset
 
-1. **Source**: [Cricsheet.org](https://cricsheet.org) — ICC Men's & Women's T20 World Cup, ball-by-ball JSON data.
-2. **ETL** (Google Colab): parsed raw JSON into two structured tables —
-   `matches` (398 rows) and `deliveries` (~92,000 rows) — with a shared `gender`
-   column so both competitions live in one unified schema instead of two
-   disconnected datasets.
-3. **Load**: cleaned data loaded into PostgreSQL via Supabase (connection pooler,
-   for IPv4 compatibility with cloud notebooks).
-4. **Validation**: hand-written SQL queries (powerplay strike rate, death-overs
-   economy, venue analysis, head-to-head records) were run and manually verified
-   against known cricket outcomes — these became the ground truth benchmark for
-   validating the Text-to-SQL agent's generated queries.
+The project uses ball-by-ball cricket data obtained from **Cricsheet.org**.
+
+The ETL pipeline transforms raw JSON files into a structured PostgreSQL database consisting of:
+
+- Matches
+- Deliveries
+
+Both ICC Men's and Women's T20 World Cup datasets are stored within a unified schema using a shared **gender** column.
 
 ---
 
-## Project Structure
+# Data Pipeline
 
+```
+Cricsheet JSON
+        │
+        ▼
+Google Colab ETL
+        │
+        ▼
+Data Cleaning
+        │
+        ▼
+PostgreSQL (Supabase)
+        │
+        ▼
+Text-to-SQL Agent
+```
+
+---
+
+# Knowledge Base Pipeline
+
+```
+Cricket Rules
+        │
+        ▼
+Text Documents
+        │
+        ▼
+Sentence Transformers
+        │
+        ▼
+Embeddings
+        │
+        ▼
+ChromaDB
+        │
+        ▼
+RAG Retrieval
+```
+
+---
+
+# Project Structure
+
+```
 CrickIQ/
-├── app.py # Streamlit chat UI
-├── router.py # Semantic router (STATS vs RULES classification)
-├── sql_agent.py # Text-to-SQL agent + domain-grounded schema prompt
-├── rag_agent.py # RAG agent (retrieval + grounded generation)
-├── build_knowledge_base.py # Embeds knowledge_base/*.txt into ChromaDB
-├── populate_knowledge_base.py # Generates the knowledge base .txt files
-├── test_retrieval.py # Retrieval quality diagnostic script
-├── knowledge_base/ # 12 cricket rules/concept documents
+│
+├── app.py
+├── router.py
+├── sql_agent.py
+├── rag_agent.py
+├── build_knowledge_base.py
+├── populate_knowledge_base.py
+├── test_retrieval.py
+│
+├── knowledge_base/
+├── chroma_db/
+├── datasets/
+│
+├── .streamlit/
 ├── requirements.txt
-├── .gitignore
-└── README.md
+├── README.md
+└── .env.example
+```
 
 ---
 
-## Setup & Running Locally
+# Installation
 
-### 1. Clone and set up environment
+## Clone Repository
+
 ```bash
-git clone https://github.com/LakduAriyathilake/CrickIQ.git
+git clone https://github.com/yourusername/CrickIQ.git
 cd CrickIQ
+```
+
+---
+
+## Create Virtual Environment
+
+```bash
 python -m venv venv
-venv\Scripts\activate      # Windows
-# source venv/bin/activate # Mac/Linux
+```
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+## Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Configure secrets
-Create a `.env` file in the project root:
+---
 
-GROQ_API_KEY=your_groq_api_key
-DATABASE_URL=your_postgresql_connection_string
+## Configure Environment Variables
 
-### 3. Build the knowledge base
+Create a `.env` file:
+
+```env
+GROQ_API_KEY=YOUR_API_KEY
+DATABASE_URL=YOUR_DATABASE_URL
+```
+
+---
+
+## Build Knowledge Base
+
 ```bash
 python populate_knowledge_base.py
 python build_knowledge_base.py
 ```
 
-### 4. Run the app
+---
+
+## Run Application
+
 ```bash
 streamlit run app.py
 ```
 
 ---
 
-## Key Engineering Decisions
+# Engineering Highlights
 
-- **Unified schema, not separate datasets**: men's and women's data share one
-  schema with a `gender` column, rather than two separate tables/databases —
-  this lets every query and every UI question work across both competitions
-  without duplicated logic.
-- **Domain-grounded SQL prompting**: rather than trusting the LLM to infer
-  cricket-specific conventions (e.g. strike rate formula, minimum sample sizes),
-  the schema prompt explicitly encodes these — validated by comparing generated
-  SQL results against hand-written, manually-verified queries.
-- **Anti-hallucination RAG**: the RAG agent is explicitly instructed to answer
-  using only retrieved context, and retrieves the top-3 candidate documents
-  (not just the top-1) to stay robust to imperfect embedding rankings.
-- **Player name matching**: since Cricsheet stores names as initials + surname
-  (e.g. `S Mandhana`), the SQL agent is instructed to match player names via
-  partial, case-insensitive search on the surname rather than exact match.
+- Hybrid RAG + Text-to-SQL architecture
+- Semantic intent routing using LLM
+- Unified database for Men's and Women's tournaments
+- Domain-aware SQL generation
+- Anti-hallucination RAG responses
+- Adaptive response formatting
+- Robust error handling and graceful API failure recovery
 
 ---
 
-## Future Improvements
+# Current Limitations
 
-- Add ODI and Test match data alongside T20 World Cup data
-- Expand the knowledge base with more nuanced rules (DRS edge cases, fielding
-  restrictions across formats)
-- Add a lightweight caching layer for repeated SQL queries
-- Deploy to Streamlit Community Cloud for a public live demo link
+- Dataset currently contains a subset of ICC Men's and Women's T20 World Cup matches.
+- Historical coverage is limited to the imported Cricsheet data.
+- Public deployment is not yet available.
+
+---
+
+# Future Improvements
+
+- Full historical ICC T20 World Cup dataset
+- ODI and Test cricket support
+- Player comparison dashboard
+- Match prediction using Machine Learning
+- Query caching
+- Public deployment on Streamlit Community Cloud
+- Voice-enabled cricket assistant
+- Interactive data visualizations
+
+---
+
+# Author
+
+**Lakdu Ariyathilake**
+
+BSc (Hons) IT – Data Science
+
+GitHub: https://github.com/LakduAriyathilake
+
+LinkedIn: https://linkedin.com/in/your-profile
+
+---
+
+# License
+
+This project is licensed under the MIT License.

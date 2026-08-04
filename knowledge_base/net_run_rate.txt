@@ -1,0 +1,7 @@
+Net Run Rate (NRR) is a statistic used to separate teams that finish level on
+points in a tournament's group stage or standings. It is calculated as the
+average number of runs a team scores per over across all their matches, minus
+the average number of runs per over they concede to opponents. A higher net run
+rate reflects a team that has generally outscored opponents by a wider margin
+across the tournament, and it often decides which teams advance when points
+are tied.

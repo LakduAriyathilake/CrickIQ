@@ -101,6 +101,61 @@ building a platform, since fielding restrictions ease. The death overs (the
 final few overs of an innings, from around over 15 onward in T20 cricket) often
 see the highest scoring rates as batters look to maximize runs before the
 innings ends, and bowlers focus on yorkers and variations to limit boundaries.""",
+
+ "mankad_dismissal": """A Mankad is a run out of the non-striking batter, carried out by the bowler
+before delivering the ball, when that batter has left their crease early to gain
+a head start on a run. It is named after Indian bowler Vinoo Mankad, who first
+used the method in a Test match in 1947. Once considered controversial and
+against the "spirit of the game," it is now recognized simply as a standard form
+of run out under the official laws of cricket, and is entirely legal at any
+point before the bowler releases the ball.""",
+
+    "hit_wicket": """A batter is given out hit wicket if they accidentally dislodge their own
+stumps with their bat, body, or equipment while playing a shot or setting off
+for a run. This can happen if the bat touches the stumps during a backswing or
+follow-through, or if the batter steps back onto the stumps. It is a relatively
+rare dismissal and counts against the batter even though no fielder or bowler
+action caused it directly.""",
+
+    "obstructing_the_field": """A batter can be given out for obstructing the field if they deliberately
+interfere with a fielder's attempt to field the ball, effect a run out, or take
+a catch. This includes deliberately blocking a throw with the body or bat, or
+verbally distracting a fielder. It is a rare dismissal since it requires the
+umpire to judge the batter's action as intentional rather than accidental.""",
+
+    "retired_hurt_and_retired_out": """A batter who leaves the field due to injury or illness during their innings is
+recorded as 'retired hurt' and can typically resume batting later in the innings
+if they recover, usually resuming at the fall of the next wicket. If a batter
+retires for any reason other than injury or illness, and without the umpire's
+consent, it is instead recorded as 'retired out,' and unlike retired hurt, they
+are not permitted to return to bat later in the innings.""",
+
+    "net_run_rate": """Net Run Rate (NRR) is a statistic used to separate teams that finish level on
+points in a tournament's group stage or standings. It is calculated as the
+average number of runs a team scores per over across all their matches, minus
+the average number of runs per over they concede to opponents. A higher net run
+rate reflects a team that has generally outscored opponents by a wider margin
+across the tournament, and it often decides which teams advance when points
+are tied.""",
+
+    "maiden_over": """A maiden over is an over in which the bowler concedes no runs at all, meaning
+no runs are scored off the bat and no extras such as wides or no-balls are
+conceded either. It is considered a strong bowling performance, since it puts
+scoring pressure on the batting side, and is more common in longer formats than
+in T20 cricket, where boundary-focused batting makes maidens rarer.""",
+
+    "concussion_substitute": """A concussion substitute is a like-for-like replacement player allowed onto the
+field when a player suffers a suspected concussion during a match, such as being
+struck on the head by the ball. The replacement must be of a similar playing
+type (for example, a bowler replaced by a bowler) and is subject to approval by
+the match referee before being allowed to take the field.""",
+
+    "over_rate_penalties": """Teams are required to bowl their allotted overs within a set time limit during
+a match. If a fielding team falls behind this required over rate, they can face
+penalties, which vary by competition and format but commonly include fines for
+players and team management. In some limited-overs formats, a slow over rate can
+also result in fielding restrictions being imposed on the fielding team for the
+remaining overs of the innings, similar to powerplay restrictions.""",
 }
 
 def write_knowledge_files(folder="knowledge_base"):

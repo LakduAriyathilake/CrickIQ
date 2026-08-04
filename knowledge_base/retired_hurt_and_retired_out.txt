@@ -1,0 +1,6 @@
+A batter who leaves the field due to injury or illness during their innings is
+recorded as 'retired hurt' and can typically resume batting later in the innings
+if they recover, usually resuming at the fall of the next wicket. If a batter
+retires for any reason other than injury or illness, and without the umpire's
+consent, it is instead recorded as 'retired out,' and unlike retired hurt, they
+are not permitted to return to bat later in the innings.
