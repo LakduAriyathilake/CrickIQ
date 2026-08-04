@@ -237,8 +237,8 @@ CrickIQ/
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/CrickIQ.git
-cd CrickIQ
+git clone https://github.com/LakduAriyathilake/CrickIQ.git
+cd crickiq
 ```
 
 ---
@@ -340,7 +340,7 @@ BSc (Hons) IT – Data Science
 
 GitHub: https://github.com/LakduAriyathilake
 
-LinkedIn: https://linkedin.com/in/your-profile
+LinkedIn: www.linkedin.com/in/lakdu-ariyathilake
 
 ---
 
