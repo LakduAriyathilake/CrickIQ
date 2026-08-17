@@ -223,6 +223,7 @@ CrickIQ/
 ├── knowledge_base/
 ├── chroma_db/
 ├── datasets/
+├── screenshots/
 │
 ├── .streamlit/
 ├── requirements.txt
@@ -231,6 +232,35 @@ CrickIQ/
 ```
 
 ---
+
+## Screenshots
+
+**Home / chat interface**
+![CrickIQ home screen](screenshots/01-home.png)
+
+**STATS query — Text-to-SQL leaderboard**
+![Powerplay strike rate leaderboard](screenshots/02-stats-leaderboard.png)
+
+**STATS query — death-overs economy rate**
+![Best economy rate in death overs](screenshots/03-death-overs-economy.png)
+
+**RULES query — RAG-grounded answer**
+![DLS method explanation, grounded in retrieved context](screenshots/04-rag-rules.png)
+
+**Adaptive result formatting — compact stat cards for small results**
+![Tournament winner results shown as stat cards](screenshots/05-stat-cards.png)
+
+**Out-of-scope guardrail**
+![Friendly not-covered message for an out-of-scope question](screenshots/06-guardrail.png)
+
+**Out-of-scope guardrail — second example**
+![Another out-of-scope question correctly declined](screenshots/07-guardrail-alt.png)
+
+**Fuzzy player name matching**
+![Player strike rate resolved despite a shortened first name](screenshots/08-player-name-matching.png)
+
+**Gender-aware head-to-head aggregation**
+![India vs Pakistan head-to-head split by men's and women's competitions](screenshots/09-head-to-head-gender-split.png)
 
 # Installation
 
